@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="circle1.png">
+  <title>Delete Donor</title>
+  <style>
+    /* Global Reset */
+    * { margin:0; padding:0; box-sizing:border-box; }
+
+    /* Animated Gradient Background */
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(-45deg, #ff4b2b, #ff416c, #24c6dc, #514a9d);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+    }
+
+    @keyframes gradientBG {
+      0%{background-position:0% 50%;}
+      50%{background-position:100% 50%;}
+      100%{background-position:0% 50%;}
+    }
+
+    /* Form Container */
+    .bloodbank {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(15px);
+      padding: 40px 30px;
+      border-radius: 25px;
+      width: 400px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+      animation: fadeInScale 1s ease forwards;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @keyframes fadeInScale {
+      0% { opacity:0; transform: scale(0.8); }
+      100% { opacity:1; transform: scale(1); }
+    }
+
+    /* Form Title */
+    .bloodbank h3 {
+      text-align: center;
+      color: #fff;
+      font-size: 1.8rem;
+      margin-bottom: 25px;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    }
+
+    /* Inputs */
+    input {
+      width: 100%;
+      padding: 14px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 12px;
+      font-size: 14px;
+      transition: all 0.4s ease;
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+    }
+
+    input::placeholder { color: #ffe4e1; }
+
+    input:focus {
+      background: rgba(255,255,255,0.4);
+      box-shadow: 0 0 10px rgba(255,0,0,0.7);
+      outline: none;
+      transform: scale(1.02);
+    }
+
+    /* Button */
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 15px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      background: linear-gradient(45deg,#ff416c,#ff4b2b);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.5s ease;
+      box-shadow: 0 6px 25px rgba(0,0,0,0.4);
+    }
+
+    button::after {
+      content: '';
+      position: absolute;
+      top:0;
+      left:-75%;
+      width:50%;
+      height:100%;
+      background: rgba(255,255,255,0.3);
+      transform: skewX(-25deg);
+      transition: 0.5s;
+    }
+
+    button:hover::after { left:150%; }
+
+    button:hover {
+      transform: scale(1.1) rotate(-1deg);
+      background: linear-gradient(45deg,#24c6dc,#514a9d);
+      box-shadow: 0 10px 35px rgba(0,0,0,0.5);
+    }
+
+    /* Responsive */
+    @media(max-width:450px){
+      .bloodbank { width: 90%; padding: 30px 20px; }
+      .bloodbank h3 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bloodbank">
+    <h3>🩸 Delete Donor Data</h3>
+    <form action="Udeletion" method="post">
+      <input type="text" name="did" placeholder="Enter Donor ID" required minlength="2" maxlength="2"/>
+      <input type="text" name="bbid" placeholder="Enter Blood Bank ID" required maxlength="2"/>
+      <button type="submit">Delete</button>
+    </form>
+  </div>
+</body>
+</html>
