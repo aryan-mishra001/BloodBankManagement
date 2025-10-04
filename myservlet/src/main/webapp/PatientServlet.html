@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="circle1.png">
+  <title>Patient Registration Form</title>
+  <style>
+    /* Background Animated Gradient */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(-45deg, #00c6ff, #0072ff, #ff512f, #dd2476);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    @keyframes gradientBG {
+      0% {background-position:0% 50%;}
+      50% {background-position:100% 50%;}
+      100% {background-position:0% 50%;}
+    }
+
+    /* Glassmorphism Card */
+    .patient {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 40px;
+      border-radius: 25px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      width: 420px;
+      animation: fadeInScale 1s ease forwards;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @keyframes fadeInScale {
+      0% { opacity:0; transform: scale(0.8); }
+      100% { opacity:1; transform: scale(1); }
+    }
+
+    /* Form Title */
+    .patient h3 {
+      text-align: center;
+      color: #fff;
+      font-size: 24px;
+      margin-bottom: 25px;
+      letter-spacing: 1px;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    }
+
+    /* Input wrapper with floating label */
+    .input-group {
+      position: relative;
+      margin: 18px 0;
+    }
+
+    .input-group input,
+    .input-group select {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      outline: none;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.2);
+      color: #fff;
+      font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    .input-group input::placeholder { color: transparent; }
+
+    .input-group input:focus,
+    .input-group select:focus {
+      background: rgba(255,255,255,0.3);
+      box-shadow: 0 0 12px rgba(255,255,255,0.6), 0 0 20px rgba(255,0,0,0.4);
+      transform: scale(1.02);
+    }
+
+    /* Floating label */
+    .input-group label {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      font-size: 14px;
+      color: #fff;
+      pointer-events: none;
+      transition: 0.3s ease all;
+    }
+
+    .input-group input:focus + label,
+    .input-group input:valid + label,
+    .input-group select:focus + label,
+    .input-group select:valid + label {
+      top: -10px;
+      left: 12px;
+      font-size: 12px;
+      color: #ffeb3b;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    }
+
+    /* Stylish Button with neon glow */
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(45deg, #ff512f, #dd2476);
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: bold;
+      letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+    }
+
+    button::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -75%;
+      width: 50%;
+      height: 100%;
+      background: rgba(255,255,255,0.4);
+      transform: skewX(-25deg);
+      transition: 0.5s;
+    }
+
+    button:hover::after { left: 150%; }
+
+    button:hover {
+      transform: scale(1.05) rotate(-1deg);
+      box-shadow: 0 10px 35px rgba(255,0,0,0.7), 0 0 15px rgba(255,255,255,0.5);
+      background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive */
+    @media(max-width:450px){
+      .patient { width: 90%; padding: 30px 20px; }
+      .patient h3 { font-size: 20px; }
+    }
+    option
+{
+border:1px solid black;
+background:green;
+color:golden;
+}
+
+  </style>
+</head>
+<body>
+  <div class="patient">
+    <h3>🏥 Patient Registration</h3>
+    <form action="/myservlet/PatientServlet" method="post">
+
+      <div class="input-group">
+        <input type="text" name="pid" required minlength="2" maxlength="4">
+        <label>Patient ID</label>
+      </div>
+
+      <div class="input-group">
+        <input type="text" name="bbid" required maxlength="2">
+        <label>Blood Bank ID</label>
+      </div>
+
+      <div class="input-group">
+        <input type="text" name="pname" required>
+        <label>Patient Name</label>
+      </div>
+
+      <div class="input-group">
+        <input type="text" name="pbg" required pattern="^(A|B|AB|O)[+-]$" minlength="2" maxlength="3">
+        <label>Blood Group</label>
+      </div>
+
+      <div class="input-group">
+        <select name="pgen" required>
+          <option value="" disabled selected></option>
+          <option value="M" style="background-color:black">M</option>
+          <option value="F">F</option>
+        </select>
+        <label>Gender</label>
+      </div>
+
+      <div class="input-group">
+        <input type="number" name="page" min="1" max="120" required>
+        <label>Age</label>
+      </div>
+
+      <div class="input-group">
+        <input type="tel" name="pcon" value="+91" required pattern="^(\+91[\-\s]?)?[6-9][0-9]{9}$" minlength="13" maxlength="13">
+        <label>Contact No.</label>
+      </div>
+
+      <button type="submit">Register</button>
+    </form>
+  </div>
+</body>
+</html>
